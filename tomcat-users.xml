@@ -1,0 +1,5 @@
+<role rolename="manager-script"/>
+<user username="admin" password="admin@123" roles="manager-script"/>
+
+
+
