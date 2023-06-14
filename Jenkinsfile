@@ -11,13 +11,13 @@ pipeline {
         stage('doc build') {
             steps {
                 // Build the Docker image using the Dockerfile in the repository
-                sh 'docker build -t san .'
+                sh 'docker build -t sant .'
             }
         }
         stage('run') {
             steps {
                 // Build the Docker image using the Dockerfile in the repository
-                sh 'docker run -itd --name sek -P san'
+                sh 'docker run -itd --name seke -P sant'
             }
         }
 
@@ -38,7 +38,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Docker image using the Dockerfile in the repository
-                deploy adapters: [tomcat9(credentialsId: 'ade06f69-aa16-44df-baa2-43e00c32183b', path: '', url: 'http://3.26.243.228:49154/')], contextPath: null, war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'ade06f69-aa16-44df-baa2-43e00c32183b', path: '', url: 'http://3.26.243.228:49155/')], contextPath: null, war: '**/*.war'
             }
         }
     }
