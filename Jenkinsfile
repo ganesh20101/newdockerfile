@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages{
+    
+        stage('scm') {
+            steps {
+                // Build the Docker image using the Dockerfile in the repository
+                git branch: 'main', credentialsId: 'git', url: 'https://github.com/ganesh20101/newdockerfile.git'
+            }
+        }
+        stage('doc build') {
+            steps {
+                // Build the Docker image using the Dockerfile in the repository
+                sh 'docker build -t san .'
+            }
+        }
+        stage('run') {
+            steps {
+                // Build the Docker image using the Dockerfile in the repository
+                sh 'docker run -itd --name sek -P san'
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                // Checkout source code from the GitHub repository
+                git 'https://github.com/MithunTechnologiesDevOps/maven-web-application.git'
+            }
+        }
+
+        stage('Build and Run Docker') {
+            steps {
+                // Build the Docker image using the Dockerfile in the repository
+                sh 'mvn clean install'
+            }
+        }
+    
+        stage('Build') {
+            steps {
+                // Build the Docker image using the Dockerfile in the repository
+                deploy adapters: [tomcat9(credentialsId: 'ade06f69-aa16-44df-baa2-43e00c32183b', path: '', url: 'http://3.26.243.228:49154/')], contextPath: null, war: '**/*.war'
+            }
+        }
+    }
+}
