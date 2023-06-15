@@ -11,14 +11,14 @@ RUN apt-get update && apt-get install -y default-jdk wget
 
 # Download and extract Apache Tomcat
 
-RUN wget https://downloads.apache.org/tomcat/tomcat-9/v9.0.50/bin/apache-tomcat-9.0.50.tar.gz
+RUN wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.tar.gz
 
-RUN tar -xzvf apache-tomcat-9.0.50.tar.gz -C /opt
+RUN tar -xzvf apache-tomcat-9.0.76.tar.gz -C /opt
 
 
 # Set environment variables
 
-ENV CATALINA_HOME /opt/apache-tomcat-9.0.50
+ENV CATALINA_HOME /opt/apache-tomcat-9.0.76
 
 ENV PATH $CATALINA_HOME/bin:$PATH
 
