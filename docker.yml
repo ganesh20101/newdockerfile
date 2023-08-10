@@ -1,0 +1,34 @@
+- name: copy module
+  hosts: ansible
+  become: true
+  tasks:
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: /var/lib/jenkins/workspace/my project/Dockerfile
+        dest: /root
+        mode: '0644'
+
+    - name: copy war
+      ansible.builtin.copy:
+        src: /var/lib/jenkins/workspace/my project/target/newapp.war
+        dest: /home/ec2-user
+        mode: '0644'
+
+
+    - name: Run the Linux command
+      ansible.builtin.command:
+        cmd: docker build -t vic .
+
+    - name: run docker 
+      ansible.builtin.command:
+        cmd: docker run -itd --name prakash -p 8085:8080 vic
+
+    - name: copy
+      shell: docker cp /home/ec2-user/newapp.war prakash:/usr/local/tomcat/webapps
+
+    
+
+
+
+
+
